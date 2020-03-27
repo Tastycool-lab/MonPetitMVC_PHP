@@ -1,4 +1,6 @@
 <?php
+namespace Tools;
+use \PDO;
 
 class Connexion {
 
@@ -8,7 +10,7 @@ class Connexion {
     private function __construct() {
         try {
 
-            self::$connexion = new PDO("mysql:host={".DATABASE_URL."};port={".DATABASE_PORT."};dbname={".DATABASE_NAME."}", DATABASE_USER, DATABASE_PWD);
+            self::$connexion = new PDO("mysql:host=".DATABASE_URL.";port=".DATABASE_PORT.";dbname=".DATABASE_NAME."", DATABASE_USER, DATABASE_PWD);
             self::$connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Ligne 4
         } catch (PDOException $e) {
             $msg = 'ERREUR PDO dans ' . $e->getFile() . ' L.' . $e->getLine() . ' : ' . $e->getMessage();

@@ -28,7 +28,7 @@ class GestionClientController {
         $modele = new GestionClientModel();
         $clients = $modele->findAll();
         if($clients){
-            $r = ReflectionClass($this);
+            $r = new ReflectionClass($this);
             include_once PATH_VIEW.str_replace('Controller','View',$r->getShortName())."/plusieursClients.php";
         }else{
             throw new Exception("Aucun Client à afficher.");

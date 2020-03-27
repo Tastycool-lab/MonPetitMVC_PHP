@@ -3,26 +3,25 @@
 namespace APP\Model;
 
 use \PDO;
-use APP\Entity\Client;
+use APP\Entity\Commande;
 use Tools\Connexion;
 
-class GestionClientModel {
+class GestionCommandeModel {
 
     public function find($id) {
-//        $connexion = $this->getConnexion();
         $connexion = Connexion::getConnexion();
-        $sql = "select * from CLIENT where id=:id";
+        $sql = "select * from COMMANDE where id=:id";
         $ligne = $connexion->prepare($sql);
         //ETRANGE bindValue
         $ligne->bindValue(':id', $id, PDO::PARAM_INT);
         $ligne->execute();
-        return $ligne->fetchObject(Client::class);
+        return $ligne->fetchObject(Commande::class);
     }
 
     public function findAll() {
         $connexion = Connexion::getConnexion();
-        $sql = "select * from CLIENT";
+        $sql = "select * from COMMANDE";
         $lignes = $connexion->query($sql);
-        return $lignes->fetchAll(PDO::FETCH_CLASS, Client::class);
+        return $lignes->fetchAll(PDO::FETCH_CLASS, Commande::class);
     }
 }
